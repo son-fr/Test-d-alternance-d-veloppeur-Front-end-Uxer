@@ -14,6 +14,7 @@ type Button_props = {
     icons?: [left_icon?: Icons_name, right_icon?: Icons_name];
     text_size?: [left_icon?: number, font_size?: number, right_icon?: number];
     button_shape?: 'rectangle' | 'rounded' | 'feather';
+    border?: number;
 }
 
 export default function Button({text, 
@@ -22,16 +23,17 @@ export default function Button({text,
                                 position = "center_center", 
                                 icons = ['none', 'none'], 
                                 text_size = [15, 20, 15], 
-                                button_shape = 'rounded'} : Button_props) {
+                                button_shape = 'rounded', border = 0} : Button_props) {
     const Item_position : Item_position = Get_position(position);
    const Shape_button : string = Get_shape(button_shape);
  
     return (
-        <button style={{ height: `${height}px`, width: `${width}px`, fontSize: `${text_size[1]}px`,
+        <button style={{height: `${height}px`, width: `${width}px`, fontSize: `${text_size[1]}px`,
                         backgroundColor: `${color}`, 
-                        alignItems: Item_position.align, justifyContent: Item_position.justify, borderRadius: Shape_button }} 
-                        className={`flex gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]`}>
-            {Draw_Icons(icons[0], text_size[0], text_size[0])}
+                        alignItems: Item_position.align, justifyContent: Item_position.justify, 
+                        borderRadius: Shape_button, border: `${border}px solid` }} 
+                        className={`flex gap-2 bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]`}>
+            {Draw_Icons(icons[0], text_size[0], text_size[0])}  
             {text}
             {Draw_Icons(icons[1], text_size[2], text_size[2])}
         </button>

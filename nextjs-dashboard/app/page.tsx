@@ -21,7 +21,7 @@ export default function Home() {
             />
             Deploy Now
           </a>
-          <Button text="Click Me" height={50} width={250} position="center_center" text_size={[250, 25, 25]} icons={['golf', 'archive']}/>
+          <Button text="Click Me" height={50} width={250} position="center_center" text_size={[25, 25, 25]} icons={['golf', 'archive']} border={2}/>
         </div>
       </main>
     </div>
