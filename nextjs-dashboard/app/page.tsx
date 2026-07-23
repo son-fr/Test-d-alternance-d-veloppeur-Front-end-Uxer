@@ -14,15 +14,14 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
+              src="/icons/at.svg"
               alt="Vercel logomark"
               width={16}
               height={16}
             />
             Deploy Now
           </a>
-          <Button text="Click Me" height="full" width="full" position="center_center"/>
+          <Button text="Click Me" height={50} width={250} position="center_center" text_size={[250, 25, 25]} icons={['golf', 'archive']}/>
         </div>
       </main>
     </div>
