@@ -1,10 +1,11 @@
-import Image from "next/image";
-import Get_position, {Item_position} from "../props/get_position";
-import Draw_Icons, {Icons_name} from "../props/get_icons";
-import Get_shape from "../props/get_shape";
+import Get_position, {Item_position} from "@/app/props/get_position";
+import Draw_Icons, {Icons_name} from "@/app/props/get_icons";
+import Get_shape from "@/app/props/get_shape";
+import {inter, lusitana, manrope, space_grotesk, sora} from "@/app/ui/font"
 
 type Button_props = {
     text?: string;
+    font?: typeof inter | typeof lusitana | typeof manrope | typeof space_grotesk | typeof sora;
     height?: number;
     width?: number;
     color?: string;
@@ -18,9 +19,10 @@ type Button_props = {
 }
 
 /**
- * Show a personisable button.
+ * Show a personalisable button.
  *
  * @param {string} text - The text of the button. (default: empty)
+ * @param {font} font - The font of the text. (default: inter)  
  * @param {number} height - The height of the button (in px). (default: 15)
  * @param {number} width - The width of the button (in px). (default: 15)
  * @param {string} color - The color of the button. (default: "white")
@@ -33,7 +35,8 @@ type Button_props = {
  * @param {number} border - The border of the button (in px). (default: 0)
  * @returns The button component.
  */
-export default function Button({text, 
+
+export default function Button({text, font = inter,
                                 height = 15, width = 15, 
                                 color = "white", 
                                 position = "center_center", 
@@ -48,7 +51,7 @@ export default function Button({text,
                         backgroundColor: `${color}`, 
                         alignItems: Item_position.align, justifyContent: Item_position.justify, 
                         borderRadius: Shape_button, border: `${border}px solid` }} 
-                        className={`flex gap-2 bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]`}>
+                        className={`${font.className}  flex gap-2 bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]`}>
             {Draw_Icons(icons[0], text_size[0], text_size[0])}  
             {text}
             {Draw_Icons(icons[1], text_size[2], text_size[2])}

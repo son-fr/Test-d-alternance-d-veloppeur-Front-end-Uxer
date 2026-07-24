@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Button from "./component/button";
+import {inter, lusitana, manrope, space_grotesk, sora} from "@/app/ui/font"
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
             />
             Deploy Now
           </a>
-          <Button text="Click Me" height={50} width={250} position="center_center" text_size={[25, 25, 25]} icons={['golf', 'archive']} border={2}/>
+          <Button text="Click Me" height={50} width={250} position="center_center" text_size={[25, 25, 25]} icons={['golf', 'archive']} border={2} font={sora}/>
         </div>
       </main>
     </div>
