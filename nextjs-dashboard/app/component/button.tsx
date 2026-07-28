@@ -1,14 +1,22 @@
+import styles from "@/app/component/button.module.css";
 import Get_position, {Item_position} from "@/app/props/get_position";
 import Draw_Icons, {Icons_name} from "@/app/props/get_icons";
 import Get_shape from "@/app/props/get_shape";
+import Get_Colors, {Colors_state} from "@/app/props/get_colors";
 import {inter, lusitana, manrope, space_grotesk, sora} from "@/app/ui/font"
 
-type Button_props = {
-    text?: string;
+type Font_param = {
     font?: typeof inter | typeof lusitana | typeof manrope | typeof space_grotesk | typeof sora;
+    weight?: 400 | 700;
+    style?: 'normal' | 'italic';
+}
+
+export type Button_props = {
+    text?: string;
+    font_param?: Font_param;
     height?: number;
     width?: number;
-    color?: string;
+    color?: Colors_state;
     position?:  'left_up' | 'center_up' | 'right_up' | 
                 'left_center' | 'center_center' | 'right_center' | 
                 'left_bottom' | 'center_bottom' | 'right_bottom';
@@ -22,10 +30,19 @@ type Button_props = {
  * Show a personalisable button.
  *
  * @param {string} text - The text of the button. (default: empty)
- * @param {font} font - The font of the text. (default: inter)  
+ * @param {Font_param} font_param - The font of the text, with is weight and style. (default: {
+                                                                                                font: inter,
+                                                                                                weight: 400,
+                                                                                                style: 'normal',
+                                                                                            }, )  
  * @param {number} height - The height of the button (in px). (default: 15)
  * @param {number} width - The width of the button (in px). (default: 15)
- * @param {string} color - The color of the button. (default: "white")
+ * @param {Colors_state} color - The color of the button on 4 state. (default: {
+                                                                        default : 'Neutral/Grey/50',
+                                                                        hover: 'Semantic/Cyan/500',
+                                                                        focus: 'Neutral/Grey/50',
+                                                                        disabled: 'Neutral/Grey/50',
+                                                                    }, )
  * @param {'left_up' | 'center_up' | 'right_up' | 
  *         'left_center' | 'center_center' | 'right_center' | 
  *         'left_bottom' | 'center_bottom' | 'right_bottom'} position - The position of the text, first value position align ( ↔ ), second value position justify ( ↕ ). (default: "center_center")
@@ -36,22 +53,34 @@ type Button_props = {
  * @returns The button component.
  */
 
-export default function Button({text, font = inter,
+export default function Button({text, font_param = {
+                                            font: inter,
+                                            weight: 400,
+                                            style: 'normal',
+                                        },
                                 height = 15, width = 15, 
-                                color = "white", 
+                                color = {
+                                            default : 'none',
+                                            hover: 'none',
+                                            focus: 'none',
+                                            disabled: 'Semantic/Yellow/300',
+                                        },
                                 position = "center_center", 
                                 icons = ['none', 'none'], 
                                 text_size = [15, 20, 15], 
                                 button_shape = 'rounded', border = 0} : Button_props) {
     const Item_position : Item_position = Get_position(position);
     const Shape_button : string = Get_shape(button_shape);
+    color = Get_Colors(color);
  
+    console.log(color.default, color.hover, color.focus)
     return (
-        <button style={{height: `${height}px`, width: `${width}px`, fontSize: `${text_size[1]}px`,
-                        backgroundColor: `${color}`, 
+        <button style={{height: `${height}px`, width: `${width}px`, 
+                        fontSize: `${text_size[1]}px`, fontWeight: font_param.weight, fontStyle: font_param.style,
+                        "--btn-color-disabled": `${color.disabled}`, "--btn-color": `${color.default}`, "--btn-color-hover": `${color.hover}`, "--btn-color-focus": `${color.focus}`,
                         alignItems: Item_position.align, justifyContent: Item_position.justify, 
-                        borderRadius: Shape_button, border: `${border}px solid` }} 
-                        className={`${font.className}  flex gap-2 bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]`}>
+                        borderRadius: Shape_button, border: `${border}px solid` } as React.CSSProperties} 
+                        className={`${font_param.font.className}  ${styles.button} flex gap-2 px-5 text-background`}>
             {Draw_Icons(icons[0], text_size[0], text_size[0])}  
             {text}
             {Draw_Icons(icons[1], text_size[2], text_size[2])}

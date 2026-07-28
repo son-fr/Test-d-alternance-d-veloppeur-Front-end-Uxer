@@ -1,0 +1,15 @@
+.button {
+  background-color: var(--btn-color);
+}
+
+.button:focus {
+  background-color: var(--btn-color-focus);
+}
+
+.button:hover {
+  background-color: var(--btn-color-hover);
+}
+
+.button:disabled {
+  background-color: var(--btn-color-disabled);
+}
