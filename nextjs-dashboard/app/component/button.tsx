@@ -38,10 +38,10 @@ export type Button_props = {
  * @param {number} height - The height of the button (in px). (default: 15)
  * @param {number} width - The width of the button (in px). (default: 15)
  * @param {Colors_state} color - The color of the button on 4 state. (default: {
-                                                                        default : 'Neutral/Grey/50',
-                                                                        hover: 'Semantic/Cyan/500',
-                                                                        focus: 'Neutral/Grey/50',
-                                                                        disabled: 'Neutral/Grey/50',
+                                                                        default : 'none',
+                                                                        hover: 'none',
+                                                                        focus: 'none',
+                                                                        disabled: 'none',
                                                                     }, )
  * @param {'left_up' | 'center_up' | 'right_up' | 
  *         'left_center' | 'center_center' | 'right_center' | 
@@ -63,7 +63,7 @@ export default function Button({text, font_param = {
                                             default : 'none',
                                             hover: 'none',
                                             focus: 'none',
-                                            disabled: 'Semantic/Yellow/300',
+                                            disabled: 'none',
                                         },
                                 position = "center_center", 
                                 icons = ['none', 'none'], 
