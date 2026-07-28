@@ -3,6 +3,7 @@ import Get_position, {Item_position} from "@/app/props/get_position";
 import Draw_Icons, {Icons_name} from "@/app/props/get_icons";
 import Get_shape from "@/app/props/get_shape";
 import Get_Colors, {Colors_state} from "@/app/props/get_colors";
+import Get_shadow, {Shadows} from "@/app/props/get_shadow";
 import {inter, lusitana, manrope, space_grotesk, sora} from "@/app/ui/font"
 
 type Font_param = {
@@ -23,6 +24,7 @@ export type Button_props = {
     icons?: [left_icon?: Icons_name, right_icon?: Icons_name];
     text_size?: [left_icon?: number, font_size?: number, right_icon?: number];
     button_shape?: 'rectangle' | 'rounded' | 'feather';
+    shadow?: Shadows;
     border?: number;
 }
 
@@ -49,6 +51,7 @@ export type Button_props = {
  * @param {[left_icon?: Icons_name, right_icon?: Icons_name]} icons - The icons chose on the left or on the right of the button (chose between all the icons in /icons/ only need the name of the file). (default: ['none', 'none'])
  * @param {[left_icon?: number, font_size?: number, right_icon?: number]} text_size - The size of the text (in px), first value is the size of the left_icons, the second value is the size of the text, the third value is the size of the right_icon. (default: [15, 20, 15])
  * @param {'rectangle' | 'rounded' | 'feather'} button_shape - The shape of the button between 3 deiferente shape (rectangle, rounded, feather). (default: "rounded")
+ * @param {Shadows} shadow - Define the effect of the button. (default: 'none') 
  * @param {number} border - The border of the button (in px). (default: 0)
  * @returns The button component.
  */
@@ -68,18 +71,19 @@ export default function Button({text, font_param = {
                                 position = "center_center", 
                                 icons = ['none', 'none'], 
                                 text_size = [15, 20, 15], 
-                                button_shape = 'rounded', border = 0} : Button_props) {
+                                button_shape = 'rounded', shadow = 'none', border = 0} : Button_props) {
     const Item_position : Item_position = Get_position(position);
     const Shape_button : string = Get_shape(button_shape);
-    color = Get_Colors(color);
+    const colors = Get_Colors(color);
+    const Shadow = Get_shadow(shadow);
  
-    console.log(color.default, color.hover, color.focus)
+    console.log(colors.default, colors.hover, colors.focus, Shadow)
     return (
         <button style={{height: `${height}px`, width: `${width}px`, 
                         fontSize: `${text_size[1]}px`, fontWeight: font_param.weight, fontStyle: font_param.style,
-                        "--btn-color-disabled": `${color.disabled}`, "--btn-color": `${color.default}`, "--btn-color-hover": `${color.hover}`, "--btn-color-focus": `${color.focus}`,
+                        "--btn-color-disabled": `${colors.disabled}`, "--btn-color": `${colors.default}`, "--btn-color-hover": `${colors.hover}`, "--btn-color-focus": `${colors.focus}`,
                         alignItems: Item_position.align, justifyContent: Item_position.justify, 
-                        borderRadius: Shape_button, border: `${border}px solid` } as React.CSSProperties} 
+                        borderRadius: Shape_button, boxShadow: Shadow, border: `${border}px solid` } as React.CSSProperties} 
                         className={`${font_param.font.className}  ${styles.button} flex gap-2 px-5 text-background`}>
             {Draw_Icons(icons[0], text_size[0], text_size[0])}  
             {text}

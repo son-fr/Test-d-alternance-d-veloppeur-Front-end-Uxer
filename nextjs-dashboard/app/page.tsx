@@ -22,7 +22,7 @@ export default function Home() {
             />
             Deploy Now
           </a>
-          <Button text="Click Me" height={50} width={250} position="center_center" text_size={[25, 25, 25]} icons={['golf', 'archive']} border={2} color={{default: 'Neutral/Grey/50',hover: 'Semantic/Cyan/400'}} font_param={{font: manrope, weight: 700}} />
+          <Button text="Click Me" height={50} width={250} position="center_center" text_size={[25, 25, 25]} icons={['golf', 'archive']} border={2} color={{default: 'Neutral/Grey/50',hover: 'Semantic/Cyan/400'}} font_param={{font: manrope, weight: 700}} shadow='shadow-2xl-down'/>
         </div>
       </main>
     </div>
