@@ -17,7 +17,7 @@ type Icons = {
     right_icon?: Icons_name;
 }
 
-type TextSize = {
+type ItemsSize = {
     left_icon?: number;
     font_size?: number;
     right_icon?: number;
@@ -35,7 +35,7 @@ export type Button_props = {
                 'left_center' | 'center_center' | 'right_center' | 
                 'left_bottom' | 'center_bottom' | 'right_bottom';
     icons?: Icons;
-    text_size?: TextSize;
+    items_size?: ItemsSize;
     button_shape?: 'rectangle' | 'rounded' | 'feather' | 'left-to-right' | 'right-to-left';
     shadow?: Shadows;
     border?: number;
@@ -45,6 +45,7 @@ export type Button_props = {
 /**
  * Show a personalisable button.
  *
+ * @param {boolean} disabled - Choose if the button is disabled or not. (default: false)
  * @param {string} text - The text of the button. (default: empty)
  * @param {Font_param} font_param - The font of the text, with is weight and style. (default: {
                                                                                                 font: inter,
@@ -66,7 +67,7 @@ export type Button_props = {
                                                                                                                                                                             left_icon: 'none', 
                                                                                                                                                                             right_icon: 'none',
                                                                                                                                                                         })
- * @param {TextSize} text_size - The size of the text (in px), first value is the size of the left_icons, the second value is the size of the text, the third value is the size of the right_icon and the fourth value is the size of the badge (in px). (default: {
+ * @param {ItemsSize} items - The size of the items (in px), first value is the size of the left_icons, the second value is the size of the text, the third value is the size of the right_icon and the fourth value is the size of the badge . (default: {
                                                                                                                                                                                                                                                                 left_icon: 15, 
                                                                                                                                                                                                                                                                 font_size: 20,
                                                                                                                                                                                                                                                                 right_icon: 15,
@@ -75,6 +76,7 @@ export type Button_props = {
  * @param {'rectangle' | 'rounded' | 'feather'} button_shape - The shape of the button between 5 deiferente shape (rectangle, rounded, feather). (default: "rounded")
  * @param {Shadows} shadow - Define the effect of the button. (default: 'none') 
  * @param {number} border - The border of the button (in px). (default: 0)
+ * @param {string} badge - chose the texte inside the badge. (default: empty)
  * @returns The button component.
  */
 
@@ -96,7 +98,7 @@ export default function Button({disabled = false,
                                             left_icon: 'none', 
                                             right_icon: 'none',
                                         }, 
-                                text_size = {
+                                items_size = {
                                             left_icon: 15, 
                                             font_size: 20,
                                             right_icon: 15,
@@ -109,18 +111,17 @@ export default function Button({disabled = false,
     const colors = Get_Colors(color);
     const Shadow = Get_shadow(shadow);
  
-    console.log(colors.default, colors.hover, colors.focus, Shadow)
     return (
         <button disabled={disabled} style={{ height: `${height}px`, width: `${width}px`, 
-                        fontSize: `${text_size.font_size}px`, fontWeight: font_param.weight, fontStyle: font_param.style,
+                        fontSize: `${items_size.font_size}px`, fontWeight: font_param.weight, fontStyle: font_param.style,
                         "--btn-color-disabled": `${colors.disabled}`, "--btn-color": `${colors.default}`, "--btn-color-hover": `${colors.hover}`, "--btn-color-focus": `${colors.focus}`,
                         alignItems: Item_position.align, justifyContent: Item_position.justify, 
                         borderRadius: Shape_button, boxShadow: Shadow, border: `${border}px solid` } as React.CSSProperties} 
                         className={`${font_param.font.className} ${styles.button} flex gap-2 px-5 text-background`}>
-            {Draw_Icons(icons.left_icon, text_size.left_icon, text_size.left_icon)}  
+            {Draw_Icons(icons.left_icon, items_size.left_icon, items_size.left_icon)}  
             {text}
-            {Draw_Icons(icons.right_icon, text_size.right_icon, text_size.right_icon)}
-            {Badge(badge, text_size.badge)}
+            {Draw_Icons(icons.right_icon, items_size.right_icon, items_size.right_icon)}
+            {Badge(badge, items_size.badge)}
         </button>
     )
 }
