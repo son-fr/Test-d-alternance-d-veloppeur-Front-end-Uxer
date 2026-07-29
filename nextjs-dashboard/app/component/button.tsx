@@ -12,6 +12,18 @@ type Font_param = {
     style?: 'normal' | 'italic';
 }
 
+type Icons = {
+    left_icon?: Icons_name;
+    right_icon?: Icons_name;
+}
+
+type TextSize = {
+    left_icon?: number;
+    font_size?: number;
+    right_icon?: number;
+    badge?: number;
+}
+
 export type Button_props = {
     disabled?: boolean;
     text?: string;
@@ -22,9 +34,9 @@ export type Button_props = {
     position?:  'left_up' | 'center_up' | 'right_up' | 
                 'left_center' | 'center_center' | 'right_center' | 
                 'left_bottom' | 'center_bottom' | 'right_bottom';
-    icons?: [left_icon?: Icons_name, right_icon?: Icons_name];
-    text_size?: [left_icon?: number, font_size?: number, right_icon?: number, badge?: number];
-    button_shape?: 'rectangle' | 'rounded' | 'feather';
+    icons?: Icons;
+    text_size?: TextSize;
+    button_shape?: 'rectangle' | 'rounded' | 'feather' | 'left-to-right' | 'right-to-left';
     shadow?: Shadows;
     border?: number;
     badge?: string;
@@ -50,9 +62,17 @@ export type Button_props = {
  * @param {'left_up' | 'center_up' | 'right_up' | 
  *         'left_center' | 'center_center' | 'right_center' | 
  *         'left_bottom' | 'center_bottom' | 'right_bottom'} position - The position of the text, first value position align ( ↔ ), second value position justify ( ↕ ). (default: "center_center")
- * @param {[left_icon?: Icons_name, right_icon?: Icons_name]} icons - The icons chose on the left or on the right of the button (chose between all the icons in /icons/ only need the name of the file). (default: ['none', 'none'])
- * @param {[left_icon?: number, font_size?: number, right_icon?: number, badge?: number]} text_size - The size of the text (in px), first value is the size of the left_icons, the second value is the size of the text, the third value is the size of the right_icon and the fourth value is the size of the badge. (default: [15, 20, 15, 15])
- * @param {'rectangle' | 'rounded' | 'feather'} button_shape - The shape of the button between 3 deiferente shape (rectangle, rounded, feather). (default: "rounded")
+ * @param {Icons} icons - The icons chose on the left or on the right of the button (chose between all the icons in /icons/ only need the name of the file). (default: {
+                                                                                                                                                                            left_icon: 'none', 
+                                                                                                                                                                            right_icon: 'none',
+                                                                                                                                                                        })
+ * @param {TextSize} text_size - The size of the text (in px), first value is the size of the left_icons, the second value is the size of the text, the third value is the size of the right_icon and the fourth value is the size of the badge (in px). (default: {
+                                                                                                                                                                                                                                                                left_icon: 15, 
+                                                                                                                                                                                                                                                                font_size: 20,
+                                                                                                                                                                                                                                                                right_icon: 15,
+                                                                                                                                                                                                                                                                badge: 15,    
+                                                                                                                                                                                                                                                            })
+ * @param {'rectangle' | 'rounded' | 'feather'} button_shape - The shape of the button between 5 deiferente shape (rectangle, rounded, feather). (default: "rounded")
  * @param {Shadows} shadow - Define the effect of the button. (default: 'none') 
  * @param {number} border - The border of the button (in px). (default: 0)
  * @returns The button component.
@@ -72,8 +92,16 @@ export default function Button({disabled = false,
                                             disabled: 'none',
                                         },
                                 position = "center_center", 
-                                icons = ['none', 'none'], 
-                                text_size = [15, 20, 15, 15], 
+                                icons = {
+                                            left_icon: 'none', 
+                                            right_icon: 'none',
+                                        }, 
+                                text_size = {
+                                            left_icon: 15, 
+                                            font_size: 20,
+                                            right_icon: 15,
+                                            badge: 15,    
+                                        } , 
                                 button_shape = 'rounded', shadow = 'none', border = 0,
                                 badge = undefined} : Button_props) {
     const Item_position : Item_position = Get_position(position);
@@ -84,15 +112,15 @@ export default function Button({disabled = false,
     console.log(colors.default, colors.hover, colors.focus, Shadow)
     return (
         <button disabled={disabled} style={{ height: `${height}px`, width: `${width}px`, 
-                        fontSize: `${text_size[1]}px`, fontWeight: font_param.weight, fontStyle: font_param.style,
+                        fontSize: `${text_size.font_size}px`, fontWeight: font_param.weight, fontStyle: font_param.style,
                         "--btn-color-disabled": `${colors.disabled}`, "--btn-color": `${colors.default}`, "--btn-color-hover": `${colors.hover}`, "--btn-color-focus": `${colors.focus}`,
                         alignItems: Item_position.align, justifyContent: Item_position.justify, 
                         borderRadius: Shape_button, boxShadow: Shadow, border: `${border}px solid` } as React.CSSProperties} 
                         className={`${font_param.font.className} ${styles.button} flex gap-2 px-5 text-background`}>
-            {Draw_Icons(icons[0], text_size[0], text_size[0])}  
+            {Draw_Icons(icons.left_icon, text_size.left_icon, text_size.left_icon)}  
             {text}
-            {Draw_Icons(icons[1], text_size[2], text_size[2])}
-            {Badge(badge, text_size[3])}
+            {Draw_Icons(icons.right_icon, text_size.right_icon, text_size.right_icon)}
+            {Badge(badge, text_size.badge)}
         </button>
     )
 }
