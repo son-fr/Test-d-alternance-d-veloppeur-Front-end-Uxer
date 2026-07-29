@@ -1,15 +1,19 @@
 .button {
   background-color: var(--btn-color);
-}
-
-.button:focus {
-  background-color: var(--btn-color-focus);
+  pointer-events: auto;
 }
 
 .button:hover {
   background-color: var(--btn-color-hover);
+  pointer-events: auto;
+}
+
+.button:focus {
+  background-color: var(--btn-color-focus);
+  pointer-events: auto;
 }
 
 .button:disabled {
   background-color: var(--btn-color-disabled);
+  pointer-events: none;
 }
