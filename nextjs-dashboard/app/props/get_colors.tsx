@@ -61,6 +61,12 @@ export default function Get_Colors(colors_state: Colors_state = {
             focus: Get_Color_value(colors_state.focus),
             disabled: Get_Color_value(colors_state.disabled),
         };
+    if (colors_state.hover === 'unset' || colors_state.hover === undefined) {
+        colors_state.hover = colors_state.default;
+    }
+    if (colors_state.focus === 'unset' || colors_state.focus === undefined) {
+        colors_state.focus = colors_state.default;
+    }
     return (
         Colors_values
     )

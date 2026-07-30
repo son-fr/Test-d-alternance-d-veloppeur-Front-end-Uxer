@@ -12,6 +12,7 @@ export default function Home() {
             <Button button_shape="left-to-right" disabled={false} text="Click Me" height={50} width={250} position="center_center" items_size={{left_icon: 25, font_size: 25, right_icon: 25, badge: 20}} icons={{left_icon: 'golf', right_icon: 'archive'}} border={1} color={{default: 'Neutral/Grey/50',hover: 'Semantic/Cyan/400', focus: 'Semantic/Rose/600', disabled: 'Brand/Fairway/950'}} font_param={{font:manrope, weight:700, style:'normal'}} shadow='shadow-2xl-down' badge='3'/>
             <Button button_shape="right-to-left" height={50} width={65} items_size={{left_icon: 25}} icons={{left_icon: 'golf'}} border={1} color={{default: 'Neutral/Grey/50',hover: 'Semantic/Cyan/400'}}/>
           </ButtonGroup>
+          <Button button_shape="rounded" color={{default: 'Brand/Fairway/600'}}/>
         </div>
       </main>
     </div>
