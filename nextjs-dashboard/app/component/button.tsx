@@ -136,9 +136,7 @@ export function ButtonGroup({children} : any) {
 
 
 function Badge(badge: string | undefined, text_size: number | undefined) {
-    console.log(text_size, badge)
     if (badge != undefined && text_size != undefined) {
-        console.log("true")
         return(
         <div style={{fontSize: `${text_size}px`, }}
             className={`flex border-2 border-solid px-1 py-0.5`}>
@@ -146,7 +144,6 @@ function Badge(badge: string | undefined, text_size: number | undefined) {
         </div>
         )
     }
-    console.log("false")
     return (
         null
     )
