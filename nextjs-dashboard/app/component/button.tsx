@@ -81,7 +81,7 @@ export type Button_props = {
  */
 
 export default function Button({disabled = false,
-                                text, font_param = {
+                                text = undefined, font_param = {
                                             font: inter,
                                             weight: 400,
                                             style: 'normal',
