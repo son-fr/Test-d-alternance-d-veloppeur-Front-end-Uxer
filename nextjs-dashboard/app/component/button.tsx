@@ -4,6 +4,7 @@ import Draw_Icons, {Icons_name} from "@/app/props/get_icons";
 import Get_shape from "@/app/props/get_shape";
 import Get_Colors, {Colors_state} from "@/app/props/get_colors";
 import Get_shadow, {Shadows} from "@/app/props/get_shadow";
+import Get_sizes, {Sizes} from "@/app/props/get_sizes";
 import {inter, lusitana, manrope, space_grotesk, sora} from "@/app/ui/font"
 
 type Font_param = {
@@ -17,26 +18,17 @@ type Icons = {
     right_icon?: Icons_name;
 }
 
-type ItemsSize = {
-    left_icon?: number;
-    font_size?: number;
-    right_icon?: number;
-    badge?: number;
-}
-
 export type Button_props = {
     disabled?: boolean;
     text?: string;
+    size?: 'M' | 'S' | 'XS'; 
     font_param?: Font_param;
-    height?: number;
-    width?: number;
     color?: Colors_state;
     position?:  'left_up' | 'center_up' | 'right_up' | 
                 'left_center' | 'center_center' | 'right_center' | 
                 'left_bottom' | 'center_bottom' | 'right_bottom';
     icons?: Icons;
-    items_size?: ItemsSize;
-    button_shape?: 'rectangle' | 'rounded' | 'feather' | 'left-to-right' | 'right-to-left';
+    button_shape?: 'rectangle' | 'rounded' | 'semi-rounded' | 'feather' | 'left-to-right' | 'right-to-left' | 'semi-rounded-left-to-right' | 'semi-rounded-right-to-left';
     shadow?: Shadows;
     border?: number;
     badge?: string;
@@ -51,9 +43,7 @@ export type Button_props = {
                                                                                                 font: inter,
                                                                                                 weight: 400,
                                                                                                 style: 'normal',
-                                                                                            }, )  
- * @param {number} height - The height of the button (in px). (default: 15)
- * @param {number} width - The width of the button (in px). (default: 15)
+                                                                                            }, )
  * @param {Colors_state} color - The color of the button on 4 state. (default: {
                                                                         default : 'none',
                                                                         hover: 'none',
@@ -67,13 +57,7 @@ export type Button_props = {
                                                                                                                                                                             left_icon: 'none', 
                                                                                                                                                                             right_icon: 'none',
                                                                                                                                                                         })
- * @param {ItemsSize} items - The size of the items (in px), first value is the size of the left_icons, the second value is the size of the text, the third value is the size of the right_icon and the fourth value is the size of the badge . (default: {
-                                                                                                                                                                                                                                                                left_icon: 15, 
-                                                                                                                                                                                                                                                                font_size: 20,
-                                                                                                                                                                                                                                                                right_icon: 15,
-                                                                                                                                                                                                                                                                badge: 15,    
-                                                                                                                                                                                                                                                            })
- * @param {'rectangle' | 'rounded' | 'feather'} button_shape - The shape of the button between 5 deiferente shape (rectangle, rounded, feather). (default: "rounded")
+ * @param {'rectangle' | 'rounded' | 'semi-rounded' | 'feather' | 'left-to-right' | 'right-to-left' | 'semi-rounded-left-to-right' | 'semi-rounded-right-to-left'} button_shape - The shape of the button between 5 deiferente shape (rectangle, rounded, feather). (default: "rounded")
  * @param {Shadows} shadow - Define the effect of the button. (default: 'none') 
  * @param {number} border - The border of the button (in px). (default: 0)
  * @param {string} badge - chose the texte inside the badge. (default: empty)
@@ -81,12 +65,12 @@ export type Button_props = {
  */
 
 export default function Button({disabled = false,
+                                size = 'XS',
                                 text = undefined, font_param = {
                                             font: inter,
                                             weight: 400,
                                             style: 'normal',
                                         },
-                                height = 15, width = 15, 
                                 color = {
                                             default : 'none',
                                             hover: 'none',
@@ -98,30 +82,26 @@ export default function Button({disabled = false,
                                             left_icon: 'none', 
                                             right_icon: 'none',
                                         }, 
-                                items_size = {
-                                            left_icon: 15, 
-                                            font_size: 20,
-                                            right_icon: 15,
-                                            badge: 15,    
-                                        } , 
                                 button_shape = 'rounded', shadow = 'none', border = 0,
                                 badge = undefined} : Button_props) {
     const Item_position : Item_position = Get_position(position);
     const Shape_button : string = Get_shape(button_shape);
     const colors = Get_Colors(color);
     const Shadow = Get_shadow(shadow);
+    const Sizes = Get_sizes(size);
  
     return (
-        <button disabled={disabled} style={{ height: `${height}px`, width: `${width}px`, 
-                        fontSize: `${items_size.font_size}px`, fontWeight: font_param.weight, fontStyle: font_param.style,
+        <button disabled={disabled} style={{ height: `${Sizes.button_height}px`, width: `auto`,
+                        gap: `${Sizes.gap}px`, padding: `${Sizes.vertical_padding}px ${Sizes.horizontal_padding}px ${Sizes.vertical_padding}px ${Sizes.horizontal_padding}px`,
+                        fontSize: Sizes.text_size, fontWeight: font_param.weight, fontStyle: font_param.style,
                         "--btn-color-disabled": `${colors.disabled}`, "--btn-color": `${colors.default}`, "--btn-color-hover": `${colors.hover}`, "--btn-color-focus": `${colors.focus}`,
                         alignItems: Item_position.align, justifyContent: Item_position.justify, 
                         borderRadius: Shape_button, boxShadow: Shadow, border: `${border}px solid` } as React.CSSProperties} 
-                        className={`${font_param.font.className} ${styles.button} flex gap-2 px-5 text-background`}>
-            {Draw_Icons(icons.left_icon, items_size.left_icon, items_size.left_icon)}  
+                        className={`${font_param.font.className} ${styles.button} flex whitespace-nowrap gap-2 px-5 text-background`}>
+            {Draw_Icons(icons.left_icon, Sizes.icons_size)} 
             {text}
-            {Draw_Icons(icons.right_icon, items_size.right_icon, items_size.right_icon)}
-            {Badge(badge, items_size.badge)}
+            {Draw_Icons(icons.right_icon, Sizes.icons_size)}
+            {Badge(badge, Sizes.badge_text_size, Sizes.badge_size)}
         </button>
     )
 }
@@ -135,11 +115,13 @@ export function ButtonGroup({children} : any) {
 }
 
 
-function Badge(badge: string | undefined, text_size: number | undefined) {
+function Badge(badge: string | undefined, text_size: number | undefined, size: number | undefined) {
     if (badge != undefined && text_size != undefined) {
         return(
-        <div style={{fontSize: `${text_size}px`, }}
-            className={`flex border-2 border-solid px-1 py-0.5`}>
+        <div style={{   fontSize: `${text_size}px`, 
+                        height: `${size}px`, width: `auto`, 
+                        backgroundColor: '#a3a3a3'}}
+            className={`flex rounded-[4px] items-center gap-[8px] px-[5px] py-[8px] whitespace-nowrap`}>
             {badge}
         </div>
         )

@@ -31,7 +31,7 @@ export type Icons_name = 'none' | 'archive' |
             'warning-circle-fill' | 'warning-circle' | 'warning-diamond' | 'warning-octagon' | 'warning' | 
             'x-circle-fill' | 'x-circle-fill' | 'x-circle' | 'x';
 
-export default function Draw_Icons(icon: Icons_name | undefined, width: number | undefined, height: number | undefined) {
+export default function Draw_Icons(icon: Icons_name | undefined, size: number | undefined) {
     const Icon_path : string = '/icons/' + icon + '.svg'
     const Icon_alt : string = icon + 'icon'
 
@@ -40,8 +40,8 @@ export default function Draw_Icons(icon: Icons_name | undefined, width: number |
         <Image
             src= {Icon_path}
             alt= {Icon_alt}
-            width={width}
-            height={height}
+            width={size}
+            height={size}
         />
         )
     }
