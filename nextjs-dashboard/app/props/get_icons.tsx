@@ -333,13 +333,11 @@ function get_Icons(name: Icons_name | undefined) {
 }
 
 export default function Draw_Icons(colors = '#fafafa', icon: Icons_name | undefined, size: number | undefined) {
-        const Icon_path : string = '/icons/' + icon + '.svg'
-        const Icon_alt : string = icon + 'icon'
         const Icon = get_Icons(icon);
 
-        if (icon != 'none' && icon != undefined) {
+        if (icon != 'none' && icon != undefined && Icon != null) {
             return(
-            <Icon width={size} height={size} style={{ color: colors }} / >
+            <Icon width={size} height={size} style={{ color: 'red' }} / >
             )
         }
         return(
