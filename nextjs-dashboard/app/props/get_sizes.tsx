@@ -50,7 +50,7 @@ export default function Get_sizes(size: 'M' | 'S' | 'XS' | undefined) {
                     };
         break;
     default:
-        console.log("error l24 Get_size.tsx : size was not found, default to M");
+        console.log("error l53 Get_size.tsx : size was not found, default to M");
     }
     return(
         data_sizes

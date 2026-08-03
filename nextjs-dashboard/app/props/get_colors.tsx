@@ -72,7 +72,7 @@ export default function Get_Colors(colors_state: Colors_state = {
     )
 }
 
-function Get_Color_value(color: Colors | ColorsValues = 'Neutral/Grey/50') {
+export function Get_Color_value(color: Colors | ColorsValues = 'none') {
     const list_Colors : [Colors[], ColorsValues[]] = [[ 
                             'none',
                             /*Neutral*/

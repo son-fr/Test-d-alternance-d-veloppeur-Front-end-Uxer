@@ -2,9 +2,9 @@ import styles from "@/app/component/button.module.css";
 import Get_position, {Item_position} from "@/app/props/get_position";
 import Draw_Icons, {Icons_name} from "@/app/props/get_icons";
 import Get_shape from "@/app/props/get_shape";
-import Get_Colors, {Colors_state} from "@/app/props/get_colors";
 import Get_shadow, {Shadows} from "@/app/props/get_shadow";
 import Get_sizes, {Sizes} from "@/app/props/get_sizes";
+import Get_style, {Styles} from "@/app/props/get_style";
 import {inter, lusitana, manrope, space_grotesk, sora} from "@/app/ui/font"
 
 type Font_param = {
@@ -14,8 +14,8 @@ type Font_param = {
 }
 
 type Icons = {
-    left_icon?: Icons_name;
-    right_icon?: Icons_name;
+    leading_icon?: Icons_name;
+    trailing_icon?: Icons_name;
 }
 
 export type Button_props = {
@@ -23,7 +23,7 @@ export type Button_props = {
     text?: string;
     size?: 'M' | 'S' | 'XS'; 
     font_param?: Font_param;
-    color?: Colors_state;
+    style?: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive';
     position?:  'left_up' | 'center_up' | 'right_up' | 
                 'left_center' | 'center_center' | 'right_center' | 
                 'left_bottom' | 'center_bottom' | 'right_bottom';
@@ -71,36 +71,31 @@ export default function Button({disabled = false,
                                             weight: 400,
                                             style: 'normal',
                                         },
-                                color = {
-                                            default : 'none',
-                                            hover: 'none',
-                                            focus: 'none',
-                                            disabled: 'none',
-                                        },
+                                style = 'Primary',
                                 position = "center_center", 
                                 icons = {
-                                            left_icon: 'none', 
-                                            right_icon: 'none',
+                                            leading_icon: 'none', 
+                                            trailing_icon: 'none',
                                         }, 
                                 button_shape = 'rounded', shadow = 'none', border = 0,
                                 badge = undefined} : Button_props) {
     const Item_position : Item_position = Get_position(position);
     const Shape_button : string = Get_shape(button_shape);
-    const colors = Get_Colors(color);
     const Shadow = Get_shadow(shadow);
     const Sizes = Get_sizes(size);
+    const Style = Get_style(style);
  
     return (
         <button disabled={disabled} style={{ height: `${Sizes.button_height}px`, width: `auto`,
                         gap: `${Sizes.gap}px`, padding: `${Sizes.vertical_padding}px ${Sizes.horizontal_padding}px ${Sizes.vertical_padding}px ${Sizes.horizontal_padding}px`,
                         fontSize: Sizes.text_size, fontWeight: font_param.weight, fontStyle: font_param.style,
-                        "--btn-color-disabled": `${colors.disabled}`, "--btn-color": `${colors.default}`, "--btn-color-hover": `${colors.hover}`, "--btn-color-focus": `${colors.focus}`,
+                        "--btn-color-disabled": `${Style.colors_state.disabled}`, "--btn-color": `${Style.colors_state.default}`, "--btn-color-hover": `${Style.colors_state.hover}`, "--btn-color-focus": `${Style.colors_state.focus}`,
                         alignItems: Item_position.align, justifyContent: Item_position.justify, 
-                        borderRadius: Shape_button, boxShadow: Shadow, border: `${border}px solid` } as React.CSSProperties} 
+                        borderRadius: Shape_button, boxShadow: Shadow, stroke: `${Style.stroke}`, color: `${Style.colors_text}` } as React.CSSProperties} 
                         className={`${font_param.font.className} ${styles.button} flex whitespace-nowrap gap-2 px-5 text-background`}>
-            {Draw_Icons(icons.left_icon, Sizes.icons_size)} 
+            {Draw_Icons(Style.colors_icons, icons.leading_icon, Sizes.icons_size)} 
             {text}
-            {Draw_Icons(icons.right_icon, Sizes.icons_size)}
+            {Draw_Icons(Style.colors_icons, icons.trailing_icon, Sizes.icons_size)}
             {Badge(badge, Sizes.badge_text_size, Sizes.badge_size)}
         </button>
     )
@@ -113,7 +108,6 @@ export function ButtonGroup({children} : any) {
         </div>
     )
 }
-
 
 function Badge(badge: string | undefined, text_size: number | undefined, size: number | undefined) {
     if (badge != undefined && text_size != undefined) {
