@@ -217,7 +217,20 @@ This prop defines the positions of the items inside the button.
 The first value est the position vertically, the second is the position horizontally
 
 **List Positions Available**
-
+ | 'center_up' | 'right_up' | 
+ *         'left_center' | 'center_center' | 'right_center' | 
+ *         'left_bottom' | 'center_bottom' | 'right_bottom'} position - The position of the text, first value position align ( ↔ ), second value position justify ( ↕ ). (default: "center_center")
+ * @param {Icons} icons - The icons chose on the left or on the right of the button (chose between all the icons in /icons/ only need the name of the file). (default: {
+                                                                                                                                                                            left_icon: 'none', 
+                                                                                                                                                                            right_icon: 'none',
+                                                                                                                                                                        })
+ * @param {ItemsSize} items - The size of the items (in px), first value is the size of the left_icons, the second value is the size of the text, the third value is the size of the right_icon and the fourth value is the size of the badge . (default: {
+                                                                                                                                                                                                                                                                left_icon: 15, 
+                                                                                                                                                                                                                                                                font_size: 20,
+                                                                                                                                                                                                                                                                right_icon: 15,
+                                                                                                                                                                                                                                                                badge: 15,    
+                                                                                                                                                                                                                                                            })
+ * @param {'rectangle' | 'round
 ```
 
     'left_up' , 'center_up' , 'right_up' , 
