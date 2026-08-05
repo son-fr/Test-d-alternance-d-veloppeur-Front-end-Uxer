@@ -1,33 +1,33 @@
 
 
-import {Shadows} from "@/app/props/get_shadow";
+import Get_shadow, {Shadows_values} from "@/app/props/get_shadow";
 import Get_Colors, {Get_Color_value, Colors_state, Colors, ColorsValues} from "@/app/props/get_colors";
 
 type States_shadows = {
-    default?: Shadows;
-    hover?: Shadows;
-    focus?: Shadows;
-    disabled?: Shadows;
+    default?: Shadows_values;
+    hover?: Shadows_values;
+    focus?: Shadows_values;
+    disabled?: Shadows_values;
 }
 
 type States_opacity = {
-    default?: number;
-    hover?: number;
-    focus?: number;
-    disabled?: number;
+    default?: string;
+    hover?: string;
+    focus?: string;
+    disabled?: string;
 }
 
 export type Styles = {
     colors_state: Colors_state,
-    colors_badge: ColorsValues | Colors,
-    colors_text:  ColorsValues | Colors,
-    colors_icons:  ColorsValues | Colors,
-    stroke: ColorsValues | Colors,
+    colors_badge: ColorsValues,
+    colors_text:  ColorsValues,
+    colors_icons:  ColorsValues,
+    stroke: ColorsValues,
     effect: States_shadows,
     opacity: States_opacity,
 }
 
-export default function Get_style(size: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive' | undefined) {
+export default function Get_style(size: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive' | 'Alpha_Dark' | 'Alpha_Light' | undefined) {
 
     let data_styles: Styles = {
                                 colors_state: Get_Colors({
@@ -41,16 +41,16 @@ export default function Get_style(size: 'Primary' | 'Secondary' | 'Ghost' | 'Des
                                 colors_icons: Get_Color_value('Neutral/White/100'), 
                                 stroke: Get_Color_value('Neutral/Black/30'),
                                 effect: {
-                                            default: 'shadow-xs-down',
-                                            hover: 'shadow-xs-down',
-                                            focus: 'focusring-primary',
-                                            disabled: 'shadow-xs-down',
+                                            default: Get_shadow('shadow-xs-down'),
+                                            hover: Get_shadow('shadow-xs-down'),
+                                            focus: Get_shadow('focusring-primary'),
+                                            disabled: Get_shadow('shadow-xs-down'),
                                         },
                                 opacity: {
-                                            default: 100,
-                                            hover: 100,
-                                            focus: 100,
-                                            disabled: 40,
+                                            default: '100%',
+                                            hover: '100%',
+                                            focus: '100%',
+                                            disabled: '40%',
                                         }
                             }
     switch (size) {
@@ -69,16 +69,16 @@ export default function Get_style(size: 'Primary' | 'Secondary' | 'Ghost' | 'Des
                             colors_icons: Get_Color_value('Neutral/Grey/500'), 
                             stroke: Get_Color_value('Neutral/Grey/300'),
                             effect: {
-                                        default: 'shadow-xs-down',
-                                        hover: 'shadow-xs-down',
-                                        focus: 'focusring-primary',
-                                        disabled: 'shadow-xs-down',
+                                        default: Get_shadow('shadow-xs-down'),
+                                        hover: Get_shadow('shadow-xs-down'),
+                                        focus: Get_shadow('focusring-primary'),
+                                        disabled: Get_shadow('shadow-xs-down'),
                                     },
                             opacity: {
-                                        default: 100,
-                                        hover: 100,
-                                        focus: 100,
-                                        disabled: 40,
+                                        default: '100%',
+                                        hover: '100%',
+                                        focus: '100%',
+                                        disabled: '40%',
                                     }
                         };
             break;
@@ -95,16 +95,16 @@ export default function Get_style(size: 'Primary' | 'Secondary' | 'Ghost' | 'Des
                             colors_icons: Get_Color_value('Neutral/Grey/500'), 
                             stroke: Get_Color_value('none'),
                             effect: {
-                                        default: 'none',
-                                        hover: 'none',
-                                        focus: 'focusring-primary',
-                                        disabled: 'none',
+                                        default: Get_shadow('none'),
+                                        hover: Get_shadow('none'),
+                                        focus: Get_shadow('focusring-primary'),
+                                        disabled: Get_shadow('none'),
                                     },
                             opacity: {
-                                        default: 100,
-                                        hover: 100,
-                                        focus: 100,
-                                        disabled: 40,
+                                        default: '100%',
+                                        hover: '100%',
+                                        focus: '100%',
+                                        disabled: '40%',
                                     }
                         };
             break;
@@ -121,16 +121,68 @@ export default function Get_style(size: 'Primary' | 'Secondary' | 'Ghost' | 'Des
                             colors_icons: Get_Color_value('Neutral/White/100'), 
                             stroke: Get_Color_value('Neutral/Black/30'),
                             effect: {
-                                        default: 'shadow-xs-down',
-                                        hover: 'shadow-xs-down',
-                                        focus: 'focusring-primary',
-                                        disabled: 'shadow-xs-down',
+                                        default: Get_shadow('shadow-xs-down'),
+                                        hover: Get_shadow('shadow-xs-down'),
+                                        focus: Get_shadow('focusring-primary'),
+                                        disabled: Get_shadow('shadow-xs-down'),
                                     },
                             opacity: {
-                                        default: 100,
-                                        hover: 100,
-                                        focus: 100,
-                                        disabled: 40,
+                                        default: '100%',
+                                        hover: '100%',
+                                        focus: '100%',
+                                        disabled: '40%',
+                                    }
+                        };
+            break;
+        case 'Alpha_Dark':
+            data_styles = {
+                            colors_state: Get_Colors({
+                                                        default: 'Neutral/Black/20',
+                                                        hover: 'Neutral/Black/30',
+                                                        focus: 'Neutral/Black/20',
+                                                        disabled: 'Neutral/Black/20',
+                                                    }),
+                            colors_badge: Get_Color_value('none'),
+                            colors_text:  Get_Color_value('none'),
+                            colors_icons: Get_Color_value('Neutral/White/100'), 
+                            stroke: Get_Color_value('none'),
+                            effect: {
+                                        default: Get_shadow('shadow-xs-down'),
+                                        hover: Get_shadow('shadow-xs-down'),
+                                        focus: Get_shadow('focusring-primary'),
+                                        disabled: Get_shadow('shadow-xs-down'),
+                                    },
+                            opacity: {
+                                        default: '100%',
+                                        hover: '100%',
+                                        focus: '100%',
+                                        disabled: '40%',
+                                    }
+                        };
+            break;
+        case 'Alpha_Light':
+            data_styles = {
+                            colors_state: Get_Colors({
+                                                        default: 'Neutral/White/20',
+                                                        hover: 'Neutral/White/30',
+                                                        focus: 'Neutral/White/20',
+                                                        disabled: 'Neutral/White/20',
+                                                    }),
+                            colors_badge: Get_Color_value('none'),
+                            colors_text:  Get_Color_value('none'),
+                            colors_icons: Get_Color_value('Neutral/White/100'), 
+                            stroke: Get_Color_value('none'),
+                            effect: {
+                                        default: Get_shadow('shadow-xs-down'),
+                                        hover: Get_shadow('shadow-xs-down'),
+                                        focus: Get_shadow('focusring-primary'),
+                                        disabled: Get_shadow('shadow-xs-down'),
+                                    },
+                            opacity: {
+                                        default: '100%',
+                                        hover: '100%',
+                                        focus: '100%',
+                                        disabled: '40%',
                                     }
                         };
             break;
