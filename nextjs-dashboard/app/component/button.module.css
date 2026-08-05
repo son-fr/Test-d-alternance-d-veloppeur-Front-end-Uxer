@@ -1,19 +1,27 @@
 .button {
   background-color: var(--btn-color);
+  box-shadow: var(--btn-effect);
+  opacity: var(--btn-opacity);
   pointer-events: auto;
 }
 
 .button:hover {
   background-color: var(--btn-color-hover);
+  box-shadow: var(--btn-effect-hover);
+  opacity: var(--btn-opacity-hover);
   pointer-events: auto;
 }
 
 .button:focus {
   background-color: var(--btn-color-focus);
+  box-shadow: var(--btn-effect-focus);
+  opacity: var(--btn-opacity-focus);
   pointer-events: auto;
 }
 
 .button:disabled {
   background-color: var(--btn-color-disabled);
+  box-shadow: var(--btn-effect-disabled);
+  opacity: var(--btn-opacity-disabled);
   pointer-events: none;
 }
