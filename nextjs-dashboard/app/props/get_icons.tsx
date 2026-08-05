@@ -337,7 +337,10 @@ export default function Draw_Icons(colors = '#fafafa', icon: Icons_name | undefi
 
         if (icon != 'none' && icon != undefined && Icon != null) {
             return(
-            <Icon width={size} height={size} style={{ color: 'red' }} / >
+            <Icon 
+                width={size} height={size} 
+                style={{ color: colors }} 
+            />
             )
         }
         return(
