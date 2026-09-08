@@ -1,0 +1,18 @@
+:root {
+    // Shadow Down
+    --shadow-xs-down: 0px 1px 2px 0px rgb(0 0 0 / 5%);
+    --shadow-s-down: 0px 1px 2px -1px rgb(0 0 0 / 10%), 0px 1px 3px 0px rgb(0 0 0 / 10%);
+    --shadow-m-down: 0px 2px 4px -2px rgb(0 0 0 / 6%), 0px 4px 6px -1px rgb(0 0 0 / 10%);
+    --shadow-l-down: 0px 2px 2px -1px rgb(0 0 0 / 4%), 0px 4px 6px -2px rgb(0 0 0 / 3%), 0px 12px 16px -4px rgb(0 0 0 / 8%);
+    --shadow-xl-down: 0px 3px 3px -1.5px rgb(0 0 0 / 4%), 0px 8px 8px -4px rgb(0 0 0 / 3%), 0px 20px 24px -4px rgb(0 0 0 / 8%);
+    --shadow-2xl-down: 0px 4px 4px -2px rgb(0 0 0 / 4%), 0px 24px 48px -12px rgb(0 0 0 / 18%);
+    // Shadow Up
+    --shadow-xs-up: 0px -1px 2px 0px rgb(0 0 0 / 5%);
+    --shadow-s-up: 0px -1px 2px -1px rgb(0 0 0 / 10%), 0px -1px 3px 0px rgb(0 0 0 / 10%);
+    --shadow-m-up: 0px -2px 4px -2px rgb(0 0 0 / 6%), 0px -4px 6px -1px rgb(0 0 0 / 10%);
+    --shadow-l-up: 0px -2px 2px -1px rgb(0 0 0 / 4%), 0px -4px 6px -2px rgb(0 0 0 / 3%), 0px -12px 16px -4px rgb(0 0 0 / 8%);
+    --shadow-xl-up: 0px -3px 3px -1.5px rgb(0 0 0 / 4%), 0px -8px 8px -4px rgb(0 0 0 / 3%), 0px -20px 24px -4px rgb(0 0 0 / 8%);
+    --shadow-2xl-up: 0px -4px 4px -2px rgb(0 0 0 / 4%), 0px -24px 48px -12px rgb(0 0 0 / 18%);
+    //Ring
+    --focusring-primary: 0px 0px 0px 3px rgb(0 0 0 / 12%);
+}
