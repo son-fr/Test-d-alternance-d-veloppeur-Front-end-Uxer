@@ -11,19 +11,6 @@ export default function Home() {
           <Button_icon icon="Trash" style="Secondary"/>
 
         </div>
-        <div className="flex flex-row gap-5 flex-wrap">
-          <Button size="M" style='Primary' text="Valider" badge='3' icons={{leading_icon: 'Golf', trailing_icon: 'Archive'}} />
-          <Button size="XS" style='Primary' text="Valider" badge='3' icons={{leading_icon: 'Golf', trailing_icon: 'Archive'}} />
-          <Button size="S" style='Primary' text="Valider" badge='3' icons={{leading_icon: 'Golf', trailing_icon: 'Archive'}} />
-
-        </div>
-        <div className="flex flex-row gap-5 flex-wrap">
-          <Button_icon icon="Ticket" style="Primary"/>
-        </div>
-
-        <div className="flex flex-row gap-5 flex-wrap">
-          <ButtonGroup size="M" text="button" style="Primary" icons={{leading_icon: 'Barcode', trailing_icon: 'Camera'}} badge="1" addon_icon="Archive"/>
-        </div>
       </main>
     </div>
   );
