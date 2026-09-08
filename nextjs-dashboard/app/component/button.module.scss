@@ -1,0 +1,81 @@
+
+@import "@/src/_global.scss";
+
+%Event{
+    pointer-events: auto;
+    &:hover{
+        pointer-events: auto;
+    }
+    &:focus{
+        pointer-events: auto;
+    }
+    &:disabled{
+        pointer-events: none;
+    }
+}
+
+.button {
+  @extend %Event;
+  width: auto;
+  border-radius: var(--radius-m, 8px);
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  font-Weight: 500;
+  font-family: var(--font-inter);
+}
+
+.badge {
+  @extend %Event;
+  width: auto;
+  border-radius: var(--radius-xs, 4px);
+  display: flex;
+  white-space: nowrap;
+  gap: var(--gap-xs, 8px);
+  padding: var(--gap-xs, 8px) 5px var(--gap-xs, 8px)  5px;
+  align-items: center;
+  font-Weight: 600;
+  font-family: var(--font-inter);
+} 
+
+.button_icon {
+  @extend %Event;
+  width: auto;
+  height: 40px;
+  border-radius: var(--radius-m, 8px);
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  gap: var(--gap-xs, 8px);
+  padding: 10px;
+}
+
+.button_group {
+  display: flex;
+  width: auto;
+  gap: var(--gap-none, 0px);
+}
+
+.button_buton_group {
+  @extend %Event;
+  align-items: center;
+  width: auto;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  font-Weight: 500;
+  font-family: var(--font-inter);
+  border-radius: var(--radius-m, 8px) var(--radius-none, 0px) var(--radius-none, 0px) var(--radius-m, 8px);
+}
+
+.button_icon_buton_group {
+  @extend %Event;
+  width: auto;
+  height: 40px;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  gap: var(--gap-xs, 8px);
+  padding: 10px;
+  border-radius: var(--radius-none, 0px) var(--radius-m, 8px) var(--radius-m, 8px) var(--radius-none, 0px);
+}
