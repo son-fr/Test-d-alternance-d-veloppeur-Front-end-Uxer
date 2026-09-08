@@ -1,0 +1,152 @@
+
+
+@mixin Shadows($default, $hover, $focus, $disabled) {
+    @if $default {
+        box-shadow: var(--shadow-xs-down, 0px 1px 2px 0px rgb(0 0 0 / 5%));
+    };
+    @if $hover {
+        &:hover{
+            box-shadow: var(--shadow-xs-down, 0px 1px 2px 0px rgb(0 0 0 / 5%));
+        }
+    }
+    @if $focus {
+        &:focus{
+            box-shadow: var(--focusring-primary, 0px 0px 0px 3px rgb(0 0 0 / 12%));
+        }
+    }
+    @if $disabled {
+        &:disabled{
+            box-shadow: var(--shadow-xs-down, 0px 1px 2px 0px rgb(0 0 0 / 5%));
+        }
+    }
+}
+
+@mixin Colors($default, $hover, $focus, $disabled) {
+    background-color: $default;
+    &:hover{
+        background-color: $hover;
+    }
+    &:focus{
+        background-color: $focus;
+    }
+    &:disabled{
+        background-color: $disabled;
+    }
+}
+
+%Opacity{
+    opacity: var(--opacity-default, 100%);
+    &:hover{
+        opacity: var(--opacity-hover, 100%);
+    }
+    &:focus{
+        opacity: var(--opacity-focus, 100%);
+    }
+    &:disabled{
+        opacity: var(--opacity-disabled, 40%);
+    }
+}
+
+.Styles_Primary{
+    .Colors_badge{
+        background-color: var(--Neutral-White-20, #ffffff33); 
+    }
+    color: var(--Neutral-White-100, #ffffff); // colors_text
+    .Icon{
+        color: var(--Neutral-White-100, #ffffff);
+    }
+    border: 1px solid var(--Neutral-Black-30, #0000004d);
+    @include Shadows(true, true, true, true);
+    @include Colors(
+                    var(--Brand-Fairway-600, #007031), 
+                    var(--Brand-Fairway-700, #005a27), 
+                    var(--Brand-Fairway-600, #007031),
+                    var(--Brand-Fairway-600, #007031)
+                    );
+    @extend %Opacity;
+}
+
+
+.Styles_Secondary{
+    .Colors_badge{
+        background-color: var(--Neutral-Black-10, #0000001a); 
+    }
+    color: var(--Neutral-Grey-900, #171717); // colors_text
+    .Icon{
+        color: var(--Neutral-Grey-500, #737373);
+    }
+    border: 1px solid var(--Neutral-Grey-300, #d4d4d4);
+    @include Shadows(true, true, true, true);
+    @include Colors(
+                    var(--Neutral-White-100, #ffffff), 
+                    var(--Neutral-Grey-50, #ffffff80), 
+                    var(--Neutral-White-100, #ffffff),
+                    var(--Neutral-White-100, #ffffff)
+                    );
+    @extend %Opacity;
+}
+
+.Styles_Ghost{
+    .Colors_badge{
+        background-color: var(--Neutral-Black-10, #0000001a); 
+    }
+    color: var(--Neutral-Grey-900, #171717); // colors_text
+    .Icon{
+        color: var(--Neutral-Grey-500, #737373);
+    }
+    @include Shadows(false, false, true, false);
+    @include Colors(
+                    var(--Neutral-White-5, #ffffff0d), 
+                    var(--Neutral-Grey-50, #ffffff80), 
+                    var(--Neutral-Black-5, #0000000d),
+                    var(--Neutral-White-5, #ffffff0d)
+                    );
+    @extend %Opacity;
+}
+
+.Styles_Destructive{
+    .Colors_badge{
+        background-color: var(--Neutral-Black-30, #00000033); 
+    }
+    color: var(--Neutral-White-100, #ffffff); // colors_text
+    .Icon{
+        color: var(--Neutral-White-100, #ffffff);
+    }
+    border: 1px solid var(--Neutral-Black-30, #0000004d);
+    @include Shadows(true, true, true, true);
+    @include Colors(
+                    var(--Semantic-Red-600, #d92d20), 
+                    var(--Semantic-Red-700, #b42318), 
+                    var(--Semantic-Red-600, #d92d20),
+                    var(--Semantic-Red-600, #d92d20)
+                    );
+    @extend %Opacity;
+}
+
+.Styles_Alpha_Dark{
+    .Icon{
+        color: var(--Neutral-White-100, #ffffff);
+    }
+    @include Shadows(true, true, true, true);
+    @include Colors(
+                    var(--Neutral-Black-20, #00000033), 
+                    var(--Neutral-Black-30, #0000004d), 
+                    var(--Neutral-Black-20, #00000033),
+                    var(--Neutral-Black-20, #00000033)
+                    );
+    @extend %Opacity;
+}
+
+.Styles_Alpha_Light{
+    .Icon{
+        color: var(--Neutral-White-100, #ffffff);
+    }
+    @include Shadows(true, true, true, true);
+    @include Colors(
+                    var(--Neutral-White-20, #ffffff33), 
+                    var(--Neutral-White-30, #ffffff4d), 
+                    var(--Neutral-White-20, #ffffff33),
+                    var(--Neutral-White-20, #ffffff33)
+                    );
+    @extend %Opacity;
+}
