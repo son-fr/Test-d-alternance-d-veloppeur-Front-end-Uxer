@@ -1,52 +1,29 @@
-import Image from "next/image";
-import Button, {ButtonGroup, Button_icon} from "./component/button";
-import {inter, lusitana, manrope, space_grotesk, sora} from "@/app/ui/font"
+import Button, {Button_icon, ButtonGroup, } from "./component/button";
 
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between gap-25 py-32 px-16 bg-[#f5f5f5]  sm:items-start">
+      <main className="flex flex-col gap-25 py-15 px-15 bg-[#f5f5f5] w-full md:w-auto flex-wrap" >
+        <div className="flex flex-row gap-5 flex-wrap">
+          <Button size="M" style='Primary' text="Valider" badge='3' icons={{leading_icon: 'Check'}} />
+          <Button size="M" style='Secondary' text="Filtrer" badge='3' icons={{leading_icon: 'SlidersHorizontal'}} />
+          <ButtonGroup size="M" text="Supprimer" style="Destructive" addon_icon="GearSix"/>
+          <Button_icon icon="Trash" style="Secondary"/>
 
-        <div>
-          <ButtonGroup>
-            <Button size="M" disabled={false} button_shape= 'semi-rounded-left-to-right' text="Click Me"   position="center_center" icons={{leading_icon: 'golf', trailing_icon: 'archive'}} border={1} badge='3'/>
-            <Button size="M" disabled={false} button_shape= 'semi-rounded-right-to-left' icons={{leading_icon: 'golf'}} border={1} />
-          </ButtonGroup>
+        </div>
+        <div className="flex flex-row gap-5 flex-wrap">
+          <Button size="M" style='Primary' text="Valider" badge='3' icons={{leading_icon: 'Golf', trailing_icon: 'Archive'}} />
+          <Button size="XS" style='Primary' text="Valider" badge='3' icons={{leading_icon: 'Golf', trailing_icon: 'Archive'}} />
+          <Button size="S" style='Primary' text="Valider" badge='3' icons={{leading_icon: 'Golf', trailing_icon: 'Archive'}} />
+
+        </div>
+        <div className="flex flex-row gap-5 flex-wrap">
+          <Button_icon icon="Ticket" style="Primary"/>
         </div>
 
-        <div>
-          <ButtonGroup>
-            <Button size="S" disabled={false} button_shape="semi-rounded-left-to-right" text="Click Me" position="center_center" icons={{leading_icon: 'golf', trailing_icon: 'archive'}} border={1} badge='3'/>
-            <Button size="S" disabled={false} button_shape="semi-rounded-right-to-left" icons={{leading_icon: 'globe'}} border={1} />
-          </ButtonGroup>
+        <div className="flex flex-row gap-5 flex-wrap">
+          <ButtonGroup size="M" text="button" style="Primary" icons={{leading_icon: 'Barcode', trailing_icon: 'Camera'}} badge="1" addon_icon="Archive"/>
         </div>
-
-        <div>
-          <ButtonGroup>
-            <Button style='Primary' size="XS" disabled={false} button_shape="semi-rounded-left-to-right" text="Click Me"   position="center_center" icons={{leading_icon: 'golf', trailing_icon: 'archive'}} border={1} badge='3'/>
-            <Button style='Primary' size="XS" disabled={false} button_shape="semi-rounded-right-to-left" icons={{leading_icon: 'golf'}} border={1} />
-          </ButtonGroup>
-        </div>
-
-        <div>
-          <Button size="M" style='Primary' border={1} button_shape="semi-rounded" icons={{leading_icon: 'check'}} text="Valider"/>
-        </div>
-
-        <div>
-          <Button size="M" style='Secondary' disabled={false} border={1} button_shape="semi-rounded" icons={{leading_icon: 'sliders_horizontal'}} text="Filtrer" badge="3"/>
-        </div>
-
-        <div>
-          <ButtonGroup>
-            <Button size="M" style='Destructive' disabled={false} border={1} button_shape="semi-rounded-left-to-right" text="Supprimer" />
-            <Button size="M" style='Destructive' disabled={false} border={1} button_shape="semi-rounded-right-to-left" icons={{leading_icon: 'gear_six'}}/>
-          </ButtonGroup>        
-        </div>
-
-        <div>
-          <Button_icon style='Secondary' disabled={false} button_shape="semi-rounded" icon='trash' />
-        </div>
-        
       </main>
     </div>
   );
