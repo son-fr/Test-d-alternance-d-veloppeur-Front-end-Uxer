@@ -9,7 +9,7 @@ export default function Home() {
       <main className="flex flex-col gap-25 py-15 px-15 bg-[#f5f5f5] w-full md:w-auto flex-wrap" >
         <div className="flex flex-row gap-5 flex-wrap">
           <Button size="M" style='Primary' text="Valider" badge='3' icons={{leading_icon: CheckIcon}} />
-          <Button size="M" style='Secondary' text="Filtrer" icons={{leading_icon: SlidersHorizontalIcon}} />
+          <Button size="M" style='Secondary' text="Filtrer" badge='3' icons={{leading_icon: SlidersHorizontalIcon}} />
           <ButtonGroup size="M" text="Supprimer" style="Destructive" addon_icon={GearSixIcon}/>
           <Button_icon icon={TrashIcon} style="Secondary"/>
         </div>
