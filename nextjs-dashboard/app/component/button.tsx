@@ -16,6 +16,8 @@ export type Button_props = {
     style?: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive';
     icons?: Icons;
     badge?: string | null;
+    addon_icon?: never;
+    icon?: never;
 }
 
 export type ButtonGroup_props = {
@@ -25,25 +27,74 @@ export type ButtonGroup_props = {
     style?: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive';
     icons?: Icons;
     badge?: string | null;
-    addon_icon?: any;
+    addon_icon: any;
+    icon?: never;
 }
 
 
 export type Button_icon_props = {
     disabled?: boolean;
+    text?: never;
+    size?: never;
     style?: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive' | 'Alpha_Dark' | 'Alpha_Light';
-    icon?: any;
+    icons?: never;
+    badge?: never;
+    addon_icon?: never;
+    icon: any;
 }
 
-export default function Button({disabled = false,
-                                size = 'XS',
-                                text = null,
-                                style = 'Primary', 
-                                icons = {
-                                            leading_icon: null,
-                                            trailing_icon: null,
-                                        },
-                                badge = null} : Button_props){
+type Props = (Button_props | ButtonGroup_props | Button_icon_props);
+
+const ButtonComponent = 
+    ({
+        disabled = false,
+        text = null,
+        size = 'M',
+        style = 'Primary',
+        icons = {
+            leading_icon: null,
+            trailing_icon: null,
+        },
+        badge = null,
+        addon_icon = null,
+        icon = null,
+    } : Props) => {
+    const Badge = (badge: string | null) => {
+        if (badge != null) {
+            return(
+                <div aria-label="Badge"
+                    className={` ${styles["Colors_badge"]} ${sizes["Badge"]} ${button.badge}`}>
+                    {badge}
+                </div>
+            )
+        }
+    }
+
+    if (addon_icon) {
+        return (
+            <div className={`${button.button_group}`}>
+                <button aria-label="button" disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button_buton_group}`}>
+                    <Draw_Icons aria-label="Leading icon" icon={icons.leading_icon} size={size == "M" || size == "XS" ? 20 : 16} />
+                    {text}
+                    <Draw_Icons aria-label="Trailing icon" icon={icons.trailing_icon} size={size == "M" || size == "XS" ? 20 : 16} />
+                    {Badge(badge)}
+                </button>
+                <button aria-label="Button icon" disabled={disabled} 
+                    className={`${styles[`${style}`]} ${button.button_icon_buton_group} ${sizes[`${size}`]}`}>
+                    <Draw_Icons aria-label="Icon" icon={addon_icon} size={size == "M" || size == "XS" ? 20 : 16}/>
+                </button>
+            </div>
+        )
+    }
+
+    if (icon) {
+        return (
+            <button aria-label="Button icon" disabled={disabled} 
+                className={`${styles[`${style}`]} ${button.button_icon}`}>
+                <Draw_Icons aria-label="Icon" icon={icon} size={20} />
+            </button>
+        )
+    }
 
     return (
         <button aria-label="button" disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button}`}>
@@ -55,56 +106,4 @@ export default function Button({disabled = false,
     )
 }
 
-function Badge(badge: string | null ) {
-    if (badge != null) {
-        return(
-        <div aria-label="Badge"
-            className={` ${styles["Colors_badge"]} ${sizes["Badge"]} ${button.badge}`}>
-            {badge}
-        </div>
-        )
-    }
-    return (
-        null
-    )
-}
-
-export function ButtonGroup({disabled = false,
-                                size = 'XS',
-                                text = null,
-                                style = 'Primary', 
-                                icons = {
-                                            leading_icon: null, 
-                                            trailing_icon: null,
-                                        },
-                                badge = null,
-                                addon_icon = null
-                                } : ButtonGroup_props) {
-
-    return (
-        <div className={`${button.button_group}`}>
-            <button aria-label="button" disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button_buton_group}`}>
-                <Draw_Icons aria-label="Leading icon" icon={icons.leading_icon} size={size == "M" || size == "XS" ? 20 : 16} />
-                {text}
-                <Draw_Icons aria-label="Trailing icon" icon={icons.trailing_icon} size={size == "M" || size == "XS" ? 20 : 16} />
-                {Badge(badge)}
-            </button>
-            <button aria-label="Button icon" disabled={disabled} 
-                className={`${styles[`${style}`]} ${button.button_icon_buton_group} ${sizes[`${size}`]}`}>
-                <Draw_Icons aria-label="Icon" icon={addon_icon} size={size == "M" || size == "XS" ? 20 : 16}/>
-            </button>
-        </div>
-    )
-}
-
-export function Button_icon( {icon = null,
-                            disabled = false,
-                            style = 'Primary',} : Button_icon_props) {
- 
-    return (
-        <button aria-label="Button icon" disabled={disabled} 
-            className={`${styles[`${style}`]} ${button.button_icon}`}>
-            <Draw_Icons aria-label="Icon" icon={icon} size={20} />
-        </button>
-    )
-}
+export default ButtonComponent;
