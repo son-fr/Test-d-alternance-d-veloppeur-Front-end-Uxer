@@ -3,14 +3,18 @@
 
 %Event{
     pointer-events: auto;
+    cursor: pointer;
     &:hover{
         pointer-events: auto;
+        cursor: pointer;
     }
     &:focus{
         pointer-events: auto;
+        cursor: pointer;
     }
     &:disabled{
         pointer-events: none;
+        cursor: not-allowed;
     }
 }
 
