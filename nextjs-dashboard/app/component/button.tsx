@@ -9,7 +9,8 @@ type Icons = {
     trailing_icon?: any;
 }
 
-export type Button_props = {
+type Button_props = {
+    aria_label: string;
     disabled?: boolean;
     text?: string | null;
     size?: 'M' | 'S' | 'XS'; 
@@ -20,7 +21,8 @@ export type Button_props = {
     icon?: never;
 }
 
-export type ButtonGroup_props = {
+type ButtonGroup_props = {
+    aria_label: string;
     disabled?: boolean;
     text?: string | null;
     size?: 'M' | 'S' | 'XS'; 
@@ -32,7 +34,8 @@ export type ButtonGroup_props = {
 }
 
 
-export type Button_icon_props = {
+type Button_icon_props = {
+    aria_label: string;
     disabled?: boolean;
     text?: never;
     size?: never;
@@ -47,41 +50,37 @@ type Props = (Button_props | ButtonGroup_props | Button_icon_props);
 
 const ButtonComponent = 
     ({
+        aria_label,
         disabled = false,
-        text = null,
+        text,
         size = 'M',
         style = 'Primary',
-        icons = {
-            leading_icon: null,
-            trailing_icon: null,
-        },
-        badge = null,
-        addon_icon = null,
-        icon = null,
+        icons,
+        badge,
+        addon_icon,
+        icon,
     } : Props) => {
     const Badge = (badge: string | null) => {
-        if (badge != null) {
-            return(
-                <div aria-label="Badge"
-                    className={` ${styles["Colors_badge"]} ${sizes["Badge"]} ${button.badge}`}>
-                    {badge}
-                </div>
-            )
-        }
+        return(
+            <div
+                className={` ${styles["Colors_badge"]} ${sizes["Badge"]} ${button.badge}`}>
+                {badge}
+            </div>
+        )
     }
 
     if (addon_icon) {
         return (
-            <div className={`${button.button_group}`}>
-                <button aria-label="button" disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button_buton_group}`}>
-                    <Draw_Icons aria-label="Leading icon" icon={icons.leading_icon} size={size == "M" || size == "XS" ? 20 : 16} />
+            <div aria-label={aria_label} className={`${button.button_group}`}>
+                <button disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button_buton_group}`}>
+                    {icons && <Draw_Icons icon={icons.leading_icon} />}
                     {text}
-                    <Draw_Icons aria-label="Trailing icon" icon={icons.trailing_icon} size={size == "M" || size == "XS" ? 20 : 16} />
-                    {Badge(badge)}
+                    {icons &&<Draw_Icons icon={icons.trailing_icon} />}
+                    {badge && Badge(badge)}
                 </button>
-                <button aria-label="Button icon" disabled={disabled} 
+                <button disabled={disabled} 
                     className={`${styles[`${style}`]} ${button.button_icon_buton_group} ${sizes[`${size}`]}`}>
-                    <Draw_Icons aria-label="Icon" icon={addon_icon} size={size == "M" || size == "XS" ? 20 : 16}/>
+                    <Draw_Icons icon={addon_icon} />
                 </button>
             </div>
         )
@@ -89,19 +88,19 @@ const ButtonComponent =
 
     if (icon) {
         return (
-            <button aria-label="Button icon" disabled={disabled} 
+            <button aria-label={aria_label} disabled={disabled} 
                 className={`${styles[`${style}`]} ${button.button_icon}`}>
-                <Draw_Icons aria-label="Icon" icon={icon} size={20} />
+                <Draw_Icons icon={icon}/>
             </button>
         )
     }
 
     return (
-        <button aria-label="button" disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button}`}>
-            <Draw_Icons aria-label="Leading icon" icon={icons.leading_icon} size={size == "M" || size == "XS" ? 20 : 16} />
+        <button aria-label={aria_label} disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button}`}>
+            {icons && <Draw_Icons icon={icons.leading_icon} />}
             {text}
-            <Draw_Icons aria-label="Trailing icon" icon={icons.trailing_icon} size={size == "M" || size == "XS" ? 20 : 16} />
-            {Badge(badge)}
+            {icons && <Draw_Icons icon={icons.trailing_icon} />}
+            {badge && Badge(badge)}
         </button>
     )
 }

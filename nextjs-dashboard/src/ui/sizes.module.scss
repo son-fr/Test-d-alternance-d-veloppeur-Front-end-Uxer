@@ -10,7 +10,8 @@
         font-size: var(--typography-size-xs, 12px);
     }
     .Icon{
-        --size-icon: var(--icon-xl, 20);
+        height: var(--icon-m, 20px);
+        width: var(--icon-m, 20px);
     }
 }
 
@@ -24,7 +25,8 @@
         font-size: var(--typography-size-xs, 12px);
     }
     .Icon{
-        --size-icon: var(--icon-xl, 20);
+        height: var(--icon-m, 20px);
+        width: var(--icon-m, 20px);
     }
 }
 
@@ -38,6 +40,7 @@
         font-size: var(--typography-size-xxs, 12px);
     }
     .Icon{
-        --size-icon: var(--icon-xl, 16);
+        height: var(--icon-s, 16px);
+        width: var(--icon-s, 16px);
     }
 }
