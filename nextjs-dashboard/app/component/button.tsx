@@ -1,4 +1,4 @@
-import Draw_Icons, {Icons_name} from "@/app/props/get_icons";
+import Draw_Icons from "@/app/props/get_icons";
 import Get_sizes from "@/app/props/get_sizes";
 import Get_style from "@/app/props/get_style";
 
@@ -7,44 +7,45 @@ import styles from "@/src/ui/styles.module.scss"
 import sizes from "@/src/ui/sizes.module.scss"
 
 type Icons = {
-    leading_icon?: Icons_name;
-    trailing_icon?: Icons_name;
+    leading_icon?: any;
+    trailing_icon?: any;
 }
 
 export type Button_props = {
     disabled?: boolean;
-    text?: string;
+    text?: string | null;
     size?: 'M' | 'S' | 'XS'; 
     style?: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive';
     icons?: Icons;
-    badge?: string;
+    badge?: string | null;
 }
 
 export type ButtonGroup_props = {
     disabled?: boolean;
-    text?: string;
+    text?: string | null;
     size?: 'M' | 'S' | 'XS'; 
     style?: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive';
     icons?: Icons;
-    badge?: string;
-    addon_icon?: Icons_name;
+    badge?: string | null;
+    addon_icon?: any;
 }
 
 
 export type Button_icon_props = {
     disabled?: boolean;
     style?: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive' | 'Alpha_Dark' | 'Alpha_Light';
-    icon?: Icons_name;
+    icon?: any;
 }
+
 export default function Button({disabled = false,
                                 size = 'XS',
-                                text = undefined,
+                                text = null,
                                 style = 'Primary', 
                                 icons = {
-                                            leading_icon: 'none', 
-                                            trailing_icon: 'none',
+                                            leading_icon: null,
+                                            trailing_icon: null,
                                         },
-                                badge = undefined} : Button_props) {
+                                badge = null} : Button_props){
     const Sizes : string = Get_sizes(size);
     const Style : string = Get_style(style);
 
@@ -58,8 +59,8 @@ export default function Button({disabled = false,
     )
 }
 
-function Badge(badge: string | undefined ) {
-    if (badge != undefined) {
+function Badge(badge: string | null ) {
+    if (badge != null) {
         return(
         <div aria-label="Badge"
             className={` ${styles["Colors_badge"]} ${sizes["Badge"]} ${button.badge}`}>
@@ -74,14 +75,14 @@ function Badge(badge: string | undefined ) {
 
 export function ButtonGroup({disabled = false,
                                 size = 'XS',
-                                text = undefined,
+                                text = null,
                                 style = 'Primary', 
                                 icons = {
-                                            leading_icon: 'none', 
-                                            trailing_icon: 'none',
+                                            leading_icon: null, 
+                                            trailing_icon: null,
                                         },
-                                badge = undefined,
-                                addon_icon = 'none'
+                                badge = null,
+                                addon_icon = null
                                 } : ButtonGroup_props) {
     const Sizes : string = Get_sizes(size);
     const Style = Get_style(style); 
@@ -102,7 +103,7 @@ export function ButtonGroup({disabled = false,
     )
 }
 
-export function Button_icon( {icon = 'none',
+export function Button_icon( {icon = null,
                             disabled = false,
                             style = 'Primary',} : Button_icon_props) {
     const Style = Get_style(style);
