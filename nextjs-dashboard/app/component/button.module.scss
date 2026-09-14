@@ -30,7 +30,6 @@
 }
 
 .badge {
-  @extend %Event;
   width: auto;
   border-radius: var(--radius-xs, 4px);
   display: flex;
