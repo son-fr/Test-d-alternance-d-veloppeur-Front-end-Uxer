@@ -1,6 +1,6 @@
 @import "@/src/_global.scss";
 
-.Size_M{
+.M{
     height: 40px;
     gap: var(--gap-xs, 8px);
     padding: var(--gap-xs, 8px) var(--gap-s, 12px) var(--gap-xs, 8px) var(--gap-s, 12px);
@@ -14,7 +14,7 @@
     }
 }
 
-.Size_XS{
+.XS{
     height: 36px;
     gap: var(--gap-xs, 8px);
     padding: var(--gap-xs, 8px) var(--gap-s, 12px) var(--gap-xs, 8px) var(--gap-s, 12px);
@@ -28,7 +28,7 @@
     }
 }
 
-.Size_S{
+.S{
     height: 34px;
     gap: var(--gap-xxs, 4px);
     padding: var(--gap-xxs, 8px) var(--gap-xxs, 8px) var(--gap-xxs, 8px) var(--gap-xxs, 8px);

@@ -1,6 +1,4 @@
 import Draw_Icons from "@/app/props/get_icons";
-import Get_sizes from "@/app/props/get_sizes";
-import Get_style from "@/app/props/get_style";
 
 import button from "@/app/component/button.module.scss"
 import styles from "@/src/ui/styles.module.scss"
@@ -46,14 +44,12 @@ export default function Button({disabled = false,
                                             trailing_icon: null,
                                         },
                                 badge = null} : Button_props){
-    const Sizes : string = Get_sizes(size);
-    const Style : string = Get_style(style);
 
     return (
-        <button aria-label="button" disabled={disabled} className={` ${styles[Style]} ${sizes[Sizes]} ${button.button}`}>
-            <Draw_Icons aria-label="Leading icon" icon={icons.leading_icon} size={Sizes == "Size_M" || Sizes == "Size_XS" ? 20 : 16} />
+        <button aria-label="button" disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button}`}>
+            <Draw_Icons aria-label="Leading icon" icon={icons.leading_icon} size={size == "M" || size == "XS" ? 20 : 16} />
             {text}
-            <Draw_Icons aria-label="Trailing icon" icon={icons.trailing_icon} size={Sizes == "Size_M" || Sizes == "Size_XS" ? 20 : 16} />
+            <Draw_Icons aria-label="Trailing icon" icon={icons.trailing_icon} size={size == "M" || size == "XS" ? 20 : 16} />
             {Badge(badge)}
         </button>
     )
@@ -84,20 +80,18 @@ export function ButtonGroup({disabled = false,
                                 badge = null,
                                 addon_icon = null
                                 } : ButtonGroup_props) {
-    const Sizes : string = Get_sizes(size);
-    const Style = Get_style(style); 
 
     return (
         <div className={`${button.button_group}`}>
-            <button aria-label="button" disabled={disabled} className={` ${styles[Style]} ${sizes[Sizes]} ${button.button_buton_group}`}>
-                <Draw_Icons aria-label="Leading icon" icon={icons.leading_icon} size={Sizes == "Size_M" || Sizes == "Size_XS" ? 20 : 16} />
+            <button aria-label="button" disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button_buton_group}`}>
+                <Draw_Icons aria-label="Leading icon" icon={icons.leading_icon} size={size == "M" || size == "XS" ? 20 : 16} />
                 {text}
-                <Draw_Icons aria-label="Trailing icon" icon={icons.trailing_icon} size={Sizes == "Size_M" || Sizes == "Size_XS" ? 20 : 16} />
+                <Draw_Icons aria-label="Trailing icon" icon={icons.trailing_icon} size={size == "M" || size == "XS" ? 20 : 16} />
                 {Badge(badge)}
             </button>
             <button aria-label="Button icon" disabled={disabled} 
-                className={`${styles[Style]} ${button.button_icon_buton_group} ${sizes[Sizes]}`}>
-                <Draw_Icons aria-label="Icon" icon={addon_icon} size={Sizes == "Size_M" || Sizes == "Size_XS" ? 20 : 16}/>
+                className={`${styles[`${style}`]} ${button.button_icon_buton_group} ${sizes[`${size}`]}`}>
+                <Draw_Icons aria-label="Icon" icon={addon_icon} size={size == "M" || size == "XS" ? 20 : 16}/>
             </button>
         </div>
     )
@@ -106,11 +100,10 @@ export function ButtonGroup({disabled = false,
 export function Button_icon( {icon = null,
                             disabled = false,
                             style = 'Primary',} : Button_icon_props) {
-    const Style = Get_style(style);
  
     return (
         <button aria-label="Button icon" disabled={disabled} 
-            className={`${styles[Style]} ${button.button_icon}`}>
+            className={`${styles[`${style}`]} ${button.button_icon}`}>
             <Draw_Icons aria-label="Icon" icon={icon} size={20} />
         </button>
     )

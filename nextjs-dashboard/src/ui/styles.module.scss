@@ -47,7 +47,7 @@
     }
 }
 
-.Styles_Primary{
+.Primary{
     .Colors_badge{
         background-color: var(--Neutral-White-20, #ffffff33); 
     }
@@ -67,7 +67,7 @@
 }
 
 
-.Styles_Secondary{
+.Secondary{
     .Colors_badge{
         background-color: var(--Neutral-Black-10, #0000001a); 
     }
@@ -86,7 +86,7 @@
     @extend %Opacity;
 }
 
-.Styles_Ghost{
+.Ghost{
     .Colors_badge{
         background-color: var(--Neutral-Black-10, #0000001a); 
     }
@@ -104,7 +104,7 @@
     @extend %Opacity;
 }
 
-.Styles_Destructive{
+.Destructive{
     .Colors_badge{
         background-color: var(--Neutral-Black-30, #00000033); 
     }
@@ -123,7 +123,7 @@
     @extend %Opacity;
 }
 
-.Styles_Alpha_Dark{
+.Alpha_Dark{
     .Icon{
         color: var(--Neutral-White-100, #ffffff);
     }
@@ -137,7 +137,7 @@
     @extend %Opacity;
 }
 
-.Styles_Alpha_Light{
+.Alpha_Light{
     .Icon{
         color: var(--Neutral-White-100, #ffffff);
     }
