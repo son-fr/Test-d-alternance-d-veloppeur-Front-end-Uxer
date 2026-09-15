@@ -1,0 +1,39 @@
+.layout_html {	
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    .layout_body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+    }
+}
+.first_page {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        padding: 15px 15px 15px 15px;
+        background-color: #f5f5f5;	
+        flex-wrap: wrap;
+        width: 100%;
+
+        @media (min-width: 600px) {
+            width: auto;
+        }
+
+        .button_list {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+    }
+}

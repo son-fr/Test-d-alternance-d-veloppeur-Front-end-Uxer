@@ -1,6 +1,6 @@
 
 import type { Metadata } from "next";
-import "@/src/styles/first_page.css";
+import layout from "@/src/ui/first_page.module.scss";
 
 export const metadata: Metadata = {
   title: "Button Uxer",
@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`h-full antialiased`}
+      className={`${layout["layout_html"]}`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className={`${layout["layout_body"]}`}>{children}</body>
     </html>
   );
 }
