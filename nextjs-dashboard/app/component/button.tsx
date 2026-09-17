@@ -1,8 +1,8 @@
 import Draw_Icons from "@/app/props/get_icons";
-
 import button from "@/app/component/button.module.scss"
 import styles from "@/src/ui/styles.module.scss"
 import sizes from "@/src/ui/sizes.module.scss"
+
 
 type Icons = {
     leading_icon?: any;
@@ -15,7 +15,8 @@ type Button_props = {
     text?: string | null;
     size?: 'M' | 'S' | 'XS'; 
     style?: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive';
-    icons?: Icons;
+    leading_icon?: any;
+    trailing_icon?: any;
     badge?: string | null;
     addon_icon?: never;
     icon?: never;
@@ -27,7 +28,8 @@ type ButtonGroup_props = {
     text?: string | null;
     size?: 'M' | 'S' | 'XS'; 
     style?: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive';
-    icons?: Icons;
+    leading_icon?: any;
+    trailing_icon?: any;
     badge?: string | null;
     addon_icon: any;
     icon?: never;
@@ -40,7 +42,8 @@ type Button_icon_props = {
     text?: never;
     size?: never;
     style?: 'Primary' | 'Secondary' | 'Ghost' | 'Destructive' | 'Alpha_Dark' | 'Alpha_Light';
-    icons?: never;
+    leading_icon?: never;
+    trailing_icon?: never;
     badge?: never;
     addon_icon?: never;
     icon: any;
@@ -55,7 +58,8 @@ const ButtonComponent =
         text,
         size = 'M',
         style = 'Primary',
-        icons,
+        leading_icon,
+        trailing_icon,
         badge,
         addon_icon,
         icon,
@@ -73,9 +77,9 @@ const ButtonComponent =
         return (
             <div aria-label={aria_label} className={`${button.button_group}`}>
                 <button disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button_buton_group}`}>
-                    {icons && <Draw_Icons icon={icons.leading_icon} />}
+                    {leading_icon && <Draw_Icons icon={leading_icon} />}
                     {text}
-                    {icons &&<Draw_Icons icon={icons.trailing_icon} />}
+                    {trailing_icon &&<Draw_Icons icon={trailing_icon} />}
                     {badge && Badge(badge)}
                 </button>
                 <button disabled={disabled} 
@@ -97,9 +101,9 @@ const ButtonComponent =
 
     return (
         <button aria-label={aria_label} disabled={disabled} className={` ${styles[`${style}`]} ${sizes[`${size}`]} ${button.button}`}>
-            {icons && <Draw_Icons icon={icons.leading_icon} />}
+            {leading_icon && <Draw_Icons icon={leading_icon} />}
             {text}
-            {icons && <Draw_Icons icon={icons.trailing_icon} />}
+            {trailing_icon && <Draw_Icons icon={trailing_icon} />}
             {badge && Badge(badge)}
         </button>
     )
